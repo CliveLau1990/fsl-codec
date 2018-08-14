@@ -198,7 +198,7 @@ enum
 #define SEEK_FLAG_NO_EARLIER 0X03    /* The actual seeked time shall be no earlier than the given time */
 #define SEEK_FLAG_FUZZ 0X04 /* Reserved. No accurate request on time but request quick response.
                                Parsers shall optimize performances with other flags.*/
-
+#define SEEK_FLAG_CLOSEST 0X05 /* this flag is only used for android when read options is ReadOptions::SEEK_CLOSEST in mp4 parser. */
 
 /*********************************************************************
  * direction for trick mode/sync sample reading
@@ -787,6 +787,9 @@ typedef int32 (*FslParserGetTextTrackHeight)(   FslParserHandle parserHandle,
                                                 uint32 trackNum,
                                                 uint32 * height);
 
+typedef int32 (*FslParserGetTextTrackMime)(   FslParserHandle parserHandle,
+                                                uint32 trackNum,
+                                                uint8 ** sampleBuffer,uint32 * dataSize);
 /************************************************************************************************************
  *
  *               Sample Reading, Seek & Trick Mode
@@ -926,6 +929,7 @@ enum /* API function ID */
     /* text/subtitle properties */
     PARSER_API_GET_TEXT_TRACK_WIDTH = 80,
     PARSER_API_GET_TEXT_TRACK_HEIGHT= 81,
+    PARSER_API_GET_TEXT_TRACK_MIME = 82,
 
     /* sample reading, seek & trick mode */
     PARSER_API_GET_READ_MODE = 100,

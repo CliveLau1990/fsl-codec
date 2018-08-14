@@ -129,3 +129,20 @@ LOCAL_SRC_FILES := lib/lib_mp3_parser_v2_arm11_elinux.so
 endif
 include $(BUILD_PREBUILT)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := libvpu-malone
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_VENDOR_MODULE := true
+ifeq ($(TARGET_ARCH),arm64)
+LOCAL_MULTILIB := both
+LOCAL_MODULE_PATH_64 := $(FSL_CODEC_OUT_PATH)/lib64/
+LOCAL_SRC_FILES_64 := lib64/libvpu-malone.so
+LOCAL_MODULE_PATH_32 := $(FSL_CODEC_OUT_PATH)/lib/
+LOCAL_SRC_FILES_32 := lib/libvpu-malone.so
+else
+LOCAL_MODULE_PATH := $(FSL_CODEC_OUT_PATH)/lib
+LOCAL_SRC_FILES := lib/libvpu-malone.so
+endif
+include $(BUILD_PREBUILT)

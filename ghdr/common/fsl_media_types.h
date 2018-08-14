@@ -109,7 +109,9 @@ typedef enum
     TXT_QT_TEXT,            /* Quicktime text */
     TXT_SUBTITLE_SSA,       /* SubStation Alpha */
     TXT_SUBTITLE_ASS,       /* Advanced SubStation Alpha */
-    TXT_SUBTITLE_TEXT                 
+    TXT_SUBTITLE_TEXT,
+
+    TXT_METADATA, /* for mett atom */
 }TextType;
 
 

@@ -3,6 +3,7 @@
   * Copyright (C) 2005-2011, 2014 Freescale Semiconductor, Inc.
   * All modifications are confidential and proprietary information
   * of Freescale Semiconductor, Inc. ALL RIGHTS RESERVED.
+  * Copyright 2018 NXP
   ************************************************************************/
 
 /***************************************************************************
@@ -182,13 +183,16 @@ typedef struct MP3D_Dec_Config {
 	MP3D_Mem_Alloc_Info		mp3d_mem_info;
 	void					*mp3d_decode_info_struct_ptr; // Global_struct
 
+  /* Pointer to swap buffer function */
   MP3D_INT8              (*app_swap_buf) (MP3D_UINT8 ** new_buf_ptr,
                                             MP3D_INT32 * new_buf_len,
                                             struct MP3D_Dec_Config *dec_config);
   MP3D_INT8*               pInBuf;
   MP3D_INT16               inBufLen;
   MP3D_INT16               consumedBufLen;
-                            /* Pointer to swap buffer function */
+  MP3D_INT8                SetOneFrameDec;  /* if non-zero, don't need to check next frame's sync word
+                                             * when decoding current frame. Default value is zero.
+                                             */
 } MP3D_Decode_Config;
 
 #ifdef __SYMBIAN32__
